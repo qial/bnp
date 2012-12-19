@@ -1,4 +1,4 @@
-package com.rebny.services.osgi;
+package com.headwire.bnp.osgi;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

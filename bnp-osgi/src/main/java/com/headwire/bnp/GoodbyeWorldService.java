@@ -1,4 +1,4 @@
-package com.rebny.services;
+package com.headwire.bnp;
 
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Properties;
