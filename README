@@ -1,0 +1,42 @@
+README - BNP
+
+Kyle Watson (kw@headwire.com)
+
+
+==================
+ABOUT THIS PROJECT
+==================
+
+This project was modified from the com.cqblueprints.archetypes:multi-module Maven Archetype.
+
+More information on the generation process can be found here:
+
+http://www.cqblueprints.com/xwiki/bin/view/Blue+Prints/The+CQ+Project+Maven+Archetype
+
+
+=====================
+BUILDING THIS PROJECT
+=====================
+
+Remember to always do a VLT update before an SVN update, and then to do a vlt commit afterwards too.
+
+This project is intended to work with Adobe CQ 5.5 and above.
+
+To build this project you will need access to the Adobe Maven Repository and also the CQ Blueprints Maven Repository.
+
+Check the following URLs for information on connecting to these two Repositories:
+
+* Connecting to the CQ Blueprints Maven Repository - http://www.cqblueprints.com/xwiki/bin/view/Blue+Prints/Connecting+to+the+CQ+Blueprints+Repository
+
+* Connecting to the Adobe Maven Repository - http://www.cqblueprints.com/xwiki/bin/view/Blue+Prints/Connecting+to+the+Adobe+Maven+Repository
+
+
+==========================
+FOR FURTHER CQ INFORMATION
+==========================
+
+For more information on recommended best practices for working with Adobe CQ:
+
+* visit the CQ Blueprints website at http://www.cqblueprints.com
+
+* send an email to info@headwire.com
