@@ -52,6 +52,14 @@
           <artifactId>gson</artifactId>
           <version>1.7.1</version>
         </dependency>
+        
+        <!-- CQ Dependencies -->
+        <dependency>
+            <groupId>com.day.cq.wcm</groupId>
+            <artifactId>cq-wcm-api</artifactId>
+            <version>5.5.0</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>

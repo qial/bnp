@@ -1,0 +1,14 @@
+{
+	"name": "Test Processing Configuration",
+	"activities": [{
+		"name": "Test Activity",
+		"className": "some.class"
+	},{
+		"name": "Test Activity 2",
+		"className": "some.other.class",
+		"conditions": [{
+			"className": "some.condition",
+			"configString": "some string"
+		}]
+	}]
+}
