@@ -19,6 +19,22 @@ public class ProcessingConfiguration {
 		sb.append(" })");
 		return sb.toString();
 	}
+
+	public ActivityConfig[] getActivities() {
+		return activities;
+	}
+
+	public void setActivities(ActivityConfig[] activities) {
+		this.activities = activities;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 	
 }

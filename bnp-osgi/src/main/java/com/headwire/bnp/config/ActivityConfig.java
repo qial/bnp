@@ -22,4 +22,28 @@ public class ActivityConfig {
 		sb.append(" })");
 		return sb.toString();
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public ConditionConfig[] getConditions() {
+		return conditions;
+	}
+
+	public void setConditions(ConditionConfig[] conditions) {
+		this.conditions = conditions;
+	}
 }

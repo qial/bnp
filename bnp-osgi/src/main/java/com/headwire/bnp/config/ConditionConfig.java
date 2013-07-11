@@ -16,4 +16,20 @@ public class ConditionConfig {
 		sb.append(" })");
 		return sb.toString();
 	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public String getConfigString() {
+		return configString;
+	}
+
+	public void setConfigString(String configString) {
+		this.configString = configString;
+	}
 }
