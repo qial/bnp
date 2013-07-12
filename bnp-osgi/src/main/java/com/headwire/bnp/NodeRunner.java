@@ -19,6 +19,8 @@ public class NodeRunner {
 	private void init(ProcessingConfiguration config) {
 		// TODO error checking for if ProcessingConfiguration isn't set up right
 		for(ActivityConfig activity : config.getActivities()) {
+			String className = activity.getClassName();
+			
 			
 		}
 	}
@@ -38,4 +40,64 @@ public class NodeRunner {
 //	public void changeValuesOnNode() {
 //		
 //	}
+	
+	private ProcessingActivity getProcessingActivityInstance(String className) {
+		Class activityClass = null;
+		try {
+			activityClass = Thread.currentThread().getContextClassLoader().loadClass( className );
+		} catch(ClassNotFoundException e) {
+			// TODO error checking, teehee
+			e.printStackTrace();
+			return null;
+		} catch(ClassCastException e) {
+			// TODO error checking, teehee
+			e.printStackTrace();
+			return null;
+		}
+		
+		ProcessingActivity pAct = null;
+		try {
+			activityClass.newInstance();
+		} catch(IllegalAccessException e) {
+			// TODO error checking, teehee
+			e.printStackTrace();
+			return null;
+		} catch (InstantiationException e) {
+			// TODO error checking, teehee
+			e.printStackTrace();
+			return null;
+		}
+		
+		return pAct;
+	}
+	
+	private ProcessingCondition getProcessingConditionInstance(String className) {
+		Class conditionClass = null;
+		try {
+			conditionClass = Thread.currentThread().getContextClassLoader().loadClass( className );
+		} catch(ClassNotFoundException e) {
+			// TODO error checking, teehee
+			e.printStackTrace();
+			return null;
+		} catch(ClassCastException e) {
+			// TODO error checking, teehee
+			e.printStackTrace();
+			return null;
+		}
+		
+		ProcessingCondition pCond = null;
+		try {
+			conditionClass.newInstance();
+		} catch(IllegalAccessException e) {
+			// TODO error checking, teehee
+			e.printStackTrace();
+			return null;
+		} catch (InstantiationException e) {
+			// TODO error checking, teehee
+			e.printStackTrace();
+			return null;
+		}
+		
+		return pCond;
+	}
 }
