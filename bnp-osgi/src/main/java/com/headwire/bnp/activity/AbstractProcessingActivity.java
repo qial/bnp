@@ -24,7 +24,7 @@ public abstract class AbstractProcessingActivity implements ProcessingActivity {
 		if(conditions == null) {
 			return true;
 		}
-		for(ProcessingCondition condition: conditions) {
+		for(ProcessingCondition condition : conditions) {
 			boolean status = condition.processOnNode(node);
 			if(status) {
 				// we're good for this one!
