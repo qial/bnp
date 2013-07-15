@@ -13,4 +13,7 @@ public interface ProcessingActivity {
 	
 	public boolean checkConditions(Node node) throws RepositoryException;
 	
+	public String getName();
+	
+	public void setName(String name);
 }

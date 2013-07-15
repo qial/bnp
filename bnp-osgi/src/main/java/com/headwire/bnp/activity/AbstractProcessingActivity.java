@@ -15,6 +15,8 @@ public abstract class AbstractProcessingActivity implements ProcessingActivity {
 	
 	private List<ProcessingCondition> conditions = null; 
 	
+	private String name;
+	
 	public void setConditions(List<ProcessingCondition> conditions) {
 		this.conditions = conditions;
 	}
@@ -36,5 +38,13 @@ public abstract class AbstractProcessingActivity implements ProcessingActivity {
 			}
 		}
 		return true;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 }

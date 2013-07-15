@@ -70,7 +70,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-Activator>com.rebny.services.osgi.Activator</Bundle-Activator>
+                        <Bundle-Activator>com.headwire.bnp.osgi.Activator</Bundle-Activator>
                     </instructions>
                 </configuration>
             </plugin>
@@ -106,7 +106,7 @@
                                         auto-deploy profile. See this link for further information:
                                         http://mail-archives.apache.org/mod_mbox/sling-users/201204.mbox/%3CBD6ED82C-3223-41C2-BF15-C987D7AAFCE3@craigsdickson.com%3E
                                     -->
-                                    <slingUrlSuffix>/apps/rebny/install</slingUrlSuffix>
+                                    <slingUrlSuffix>/apps/bnp/install</slingUrlSuffix>
                                     <user>${cq.user}</user>
                                     <password>${cq.password}</password>
                                     <usePut>true</usePut>

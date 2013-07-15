@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class ProcessingConfiguration {
 	
 	private ActivityConfig[] activities;
-	
+	private String[] startPaths;
 	private String name;
 	
 	@Override
@@ -34,6 +34,14 @@ public class ProcessingConfiguration {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String[] getStartPaths() {
+		return startPaths;
+	}
+
+	public void setStartPaths(String[] startPaths) {
+		this.startPaths = startPaths;
 	}
 	
 	

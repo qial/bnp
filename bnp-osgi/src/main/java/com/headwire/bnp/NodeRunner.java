@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.headwire.bnp.config.ActivityConfig;
 import com.headwire.bnp.config.ConditionConfig;
 import com.headwire.bnp.config.ProcessingConfiguration;
 
 public class NodeRunner {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(NodeRunner.class);
+	
 	public static void main(String[] args) {
 		
 	}
@@ -17,7 +23,18 @@ public class NodeRunner {
 		init(config);
 	}
 	
+	public void run() {
+		LOG.info("Beginning NodeRunner run");
+		for(String startPath : startPaths) {
+			LOG.info("Noderunner: Start path is "+startPath);
+			
+			
+		}
+	}
+	
 	private void init(ProcessingConfiguration config) {
+		startPaths = config.getStartPaths();
+		
 		activities = new ArrayList<ProcessingActivity>();
 		
 		// TODO error checking for if ProcessingConfiguration isn't set up right
@@ -50,17 +67,19 @@ public class NodeRunner {
 	}
 	
 	// pieces of info we need
-	private String startPath;
+	private String startPaths[];
 	
 	// the activities it'll be doing on nodes
 	private List<ProcessingActivity> activities = new ArrayList<ProcessingActivity>();
 	
 	private void initProcessingActivity(ProcessingActivity activity, ActivityConfig config) {
-		// TODO fill in variables
+		// initialize variables
+		activity.setName(config.getName());
 	}
 	
 	private void initProcessingCondition(ProcessingCondition condition, ConditionConfig config) {
-		// TODO fill in variables
+		// configure processing condition
+		condition.configure(config.getConfigString());
 	}
 	
 	private ProcessingActivity getProcessingActivityInstance(String className) {
