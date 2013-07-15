@@ -1,17 +1,31 @@
 {
 	"name": "Test Processing Configuration",
 	"startPaths": [
-		"/content/lifetech/global/en/home"
+		"/content/lifetech/global/en/home/products-services/services"
 	],
 	"activities": [{
 		"name": "Test Activity",
-		"className": "some.class"
+		"className": "com.headwire.bnp.activity.EditProperties",
+		"conditions": [{
+			"className": "com.headwire.bnp.condition.AlwaysFalseCondition"
+		}],
+		"enabled": false
 	},{
 		"name": "Test Activity 2",
-		"className": "some.other.class",
+		"className": "com.headwire.bnp.activity.DeleteNode",
 		"conditions": [{
-			"className": "some.condition",
-			"configString": "some string"
+			"className": "com.headwire.bnp.condition.NodeNameCondition",
+			"configString": "services"
+		},{
+			"className": "com.headwire.bnp.condition.NodeTypeCondition",
+			"configString": "cq:Page"
+		}],
+		"enabled": false
+	},{
+		"name": "Test Deactivated Page activity"
+		"className": "com.headwire.bnp.activity.EditProperties",
+		"conditions": [{
+			"className": "com.headwire.bnp.condition.DeactivatedPageCondition"
 		}]
 	}]
 }

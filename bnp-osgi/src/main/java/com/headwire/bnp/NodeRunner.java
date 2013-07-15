@@ -25,6 +25,8 @@ public class NodeRunner {
 		
 	}
 	
+	
+	
 	public NodeRunner(ProcessingConfiguration config) {
 		init(config);
 	}
@@ -90,7 +92,8 @@ public class NodeRunner {
 				}
 			}
 			else {
-				LOG.info("Conditions failed for "+activity.getName()+" on resource "+res.getPath());
+				// for now, don't log when conditions fail
+				//LOG.info("Conditions failed for "+activity.getName()+" on resource "+res.getPath());
 			}
 		}
 		return true;
@@ -104,6 +107,12 @@ public class NodeRunner {
 		// TODO error checking for if ProcessingConfiguration isn't set up right
 		for(ActivityConfig aConfig : config.getActivities()) {
 			String activityClass = aConfig.getClassName();
+			
+			if(!aConfig.isEnabled()) {
+				// activity is disabled in the config file, skip it!
+				LOG.info("Skipping disabled ProcessingActivity "+aConfig.getName());
+				continue;
+			}
 			
 			// get activity instance & load everything but conditions
 			ProcessingActivity activity = getProcessingActivityInstance(activityClass);

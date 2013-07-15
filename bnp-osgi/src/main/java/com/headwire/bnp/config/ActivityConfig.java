@@ -6,6 +6,7 @@ public class ActivityConfig {
 
 	private String name;
 	private String className;
+	private boolean enabled = true;
 	
 	private ConditionConfig[] conditions;
 	
@@ -49,5 +50,13 @@ public class ActivityConfig {
 
 	public void setConditions(ConditionConfig[] conditions) {
 		this.conditions = conditions;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 }
