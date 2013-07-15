@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.headwire.bnp.ProcessingCondition;
 
-public class NodeTypeCondition extends AbstractProcessingCondition {
+public class ResourceTypeCondition extends AbstractProcessingCondition {
 	
 	private String nodeType;
 	
@@ -25,12 +25,11 @@ public class NodeTypeCondition extends AbstractProcessingCondition {
 	@Override
 	public boolean processOnResource(Resource res) throws RepositoryException {
 		//String givenType = "";//res.g.getName();
-		ValueMap vm = res.adaptTo(ValueMap.class);
-		String givenType = vm.get("jcr:primaryType",String.class);
+		String resType = res.getResourceType();
 		if(DEBUG) {
-			LOG.info("Node type of "+res.getPath()+" was "+givenType);
+			LOG.info("Resource type of "+res.getPath()+" was "+resType);
 		}
-		if(givenType.equals(nodeType)) {
+		if(resType.equals(nodeType)) {
 			return true;
 		}
 		return false;
