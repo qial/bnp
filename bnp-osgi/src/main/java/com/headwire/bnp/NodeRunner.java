@@ -107,6 +107,7 @@ public class NodeRunner {
 			List<ProcessingCondition> conditions = new ArrayList<ProcessingCondition>();
 			
 			// TODO can the aConfig.getConditions() be null?
+			// answer: yes D:
 			for(ConditionConfig cConfig : aConfig.getConditions()) {
 				String conditionClass = cConfig.getClassName();
 				
@@ -145,26 +146,19 @@ public class NodeRunner {
 		try {
 			activityClass = Thread.currentThread().getContextClassLoader().loadClass( className );
 		} catch(ClassNotFoundException e) {
-			// TODO error checking, teehee
-			e.printStackTrace();
-			return null;
-		} catch(ClassCastException e) {
-			// TODO error checking, teehee
-			e.printStackTrace();
+			LOG.error("Caught error loading ProcessingActivity class instance "+className,e);
 			return null;
 		}
 		
 		ProcessingActivity pAct = null;
 		try {
-			activityClass.newInstance();
+			pAct = (ProcessingActivity) activityClass.newInstance();
 		} catch(IllegalAccessException e) {
-			// TODO error checking, teehee
-			e.printStackTrace();
-			return null;
+			LOG.error("Caught error getting ProcessingActivity instance",e);
 		} catch (InstantiationException e) {
-			// TODO error checking, teehee
-			e.printStackTrace();
-			return null;
+			LOG.error("Caught error getting ProcessingActivity instance",e);
+		} catch(ClassCastException e) {
+			LOG.error("Caught error getting ProcessingActivity instance",e);
 		}
 		
 		return pAct;
@@ -175,26 +169,19 @@ public class NodeRunner {
 		try {
 			conditionClass = Thread.currentThread().getContextClassLoader().loadClass( className );
 		} catch(ClassNotFoundException e) {
-			// TODO error checking, teehee
-			e.printStackTrace();
-			return null;
-		} catch(ClassCastException e) {
-			// TODO error checking, teehee
-			e.printStackTrace();
+			LOG.error("Caught error loading ProcessingCondition class instance "+className,e);
 			return null;
 		}
 		
 		ProcessingCondition pCond = null;
 		try {
-			conditionClass.newInstance();
+			pCond = (ProcessingCondition) conditionClass.newInstance();
 		} catch(IllegalAccessException e) {
-			// TODO error checking, teehee
-			e.printStackTrace();
-			return null;
+			LOG.error("Caught error getting ProcessingCondition instance",e);
 		} catch (InstantiationException e) {
-			// TODO error checking, teehee
-			e.printStackTrace();
-			return null;
+			LOG.error("Caught error getting ProcessingCondition instance",e);
+		} catch(ClassCastException e) {
+			LOG.error("Caught error getting ProcessingCondition instance",e);
 		}
 		
 		return pCond;

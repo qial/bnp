@@ -40,6 +40,10 @@ public class ActivityConfig {
 	}
 
 	public ConditionConfig[] getConditions() {
+		if(conditions == null) {
+			// don't return null for conditions
+			return new ConditionConfig[0];
+		}
 		return conditions;
 	}
 

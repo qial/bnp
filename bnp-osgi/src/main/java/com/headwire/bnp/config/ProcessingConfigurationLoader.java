@@ -20,6 +20,7 @@ public class ProcessingConfigurationLoader {
         try {
             File localFile = new File( ".", fileName );
             if( !localFile.exists() || !localFile.isFile() || !localFile.canRead() ) {
+            	LOG.warn("First attempt at finding file "+localFile.getAbsolutePath()+" failed");
                 throw new FileNotFoundException( "Local File not found" );
             }
             configurationStream = new FileInputStream( fileName );
