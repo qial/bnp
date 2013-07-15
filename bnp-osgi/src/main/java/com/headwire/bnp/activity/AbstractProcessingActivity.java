@@ -5,6 +5,8 @@ import java.util.List;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
+import org.apache.sling.api.resource.Resource;
+
 import com.headwire.bnp.ProcessingActivity;
 import com.headwire.bnp.ProcessingCondition;
 import com.headwire.bnp.config.BnpConstants;
@@ -21,7 +23,8 @@ public abstract class AbstractProcessingActivity implements ProcessingActivity {
 		this.conditions = conditions;
 	}
 	
-	public boolean checkConditions(Node node) throws RepositoryException {
+	@Override
+	public boolean checkConditions(Resource res) throws RepositoryException {
 		// no conditions -> always true
 		if(conditions == null) {
 			return true;

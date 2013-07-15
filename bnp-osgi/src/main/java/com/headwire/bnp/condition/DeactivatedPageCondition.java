@@ -3,6 +3,8 @@ package com.headwire.bnp.condition;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
+import org.apache.sling.api.resource.Resource;
+
 import com.day.cq.wcm.api.Page;
 import com.headwire.bnp.ProcessingCondition;
 import com.headwire.bnp.config.BnpConstants;
@@ -10,14 +12,14 @@ import com.headwire.bnp.config.BnpConstants;
 public class DeactivatedPageCondition extends AbstractProcessingCondition {
 
 	@Override
-	public boolean processOnNode(Node node) throws RepositoryException {
+	public boolean processOnResource(Resource res) throws RepositoryException {
 		// TODO Auto-generated method stub
 		
-		if(isPage(node)) {
-			Page page = convertToPage(node);
+		if(isPage(res)) {
+			Page page = convertToPage(res);
 			if(page == null) {
 				if(DEBUG) {
-					LOG.warn("Node at path "+node.getPath()+" returned true for isPage() but convertToPage() returned null!");
+					LOG.warn("Node at path "+res.getPath()+" returned true for isPage() but convertToPage() returned null!");
 				}
 				return false;
 			}
@@ -43,7 +45,7 @@ public class DeactivatedPageCondition extends AbstractProcessingCondition {
 		// nothing to configure
 	}
 	
-	private boolean isPage(Node n) {
+	private boolean isPage(Resource res) {
 		// TODO Check if node is a page
 		return false;
 	}
@@ -53,7 +55,7 @@ public class DeactivatedPageCondition extends AbstractProcessingCondition {
 		return false;
 	}
 	
-	private Page convertToPage(Node n) {
+	private Page convertToPage(Resource res) {
 		// TODO returns Page version of node
 		return null;
 	}

@@ -3,6 +3,7 @@ package com.headwire.bnp.condition;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
+import org.apache.sling.api.resource.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,10 +22,11 @@ public class NodeTypeCondition extends AbstractProcessingCondition {
 	}
 	
 	@Override
-	public boolean processOnNode(Node node) throws RepositoryException {
-		String givenType = node.getPrimaryNodeType().getName();
+	public boolean processOnResource(Resource res) throws RepositoryException {
+		// TODO this, change for resource
+		String givenType = "";//res.g.getName();
 		if(DEBUG) {
-			LOG.info("Node type of "+node.getPath()+" was "+givenType);
+			LOG.info("Node type of "+res.getPath()+" was "+givenType);
 		}
 		if(givenType.equals(nodeType)) {
 			return true;

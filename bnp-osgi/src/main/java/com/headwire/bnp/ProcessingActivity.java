@@ -5,13 +5,15 @@ import java.util.List;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
+import org.apache.sling.api.resource.Resource;
+
 public interface ProcessingActivity {
 	
-	public void performAction(Node node);
+	public int performAction(Resource res) throws RepositoryException;
 	
 	public void setConditions(List<ProcessingCondition> conditions);
 	
-	public boolean checkConditions(Node node) throws RepositoryException;
+	public boolean checkConditions(Resource res) throws RepositoryException;
 	
 	public String getName();
 	
