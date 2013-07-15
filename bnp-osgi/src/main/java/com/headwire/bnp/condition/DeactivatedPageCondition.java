@@ -5,6 +5,7 @@ import javax.jcr.RepositoryException;
 
 import org.apache.sling.api.resource.Resource;
 
+import com.day.cq.replication.ReplicationStatus;
 import com.day.cq.wcm.api.Page;
 import com.headwire.bnp.ProcessingCondition;
 import com.headwire.bnp.config.BnpConstants;
@@ -13,7 +14,6 @@ public class DeactivatedPageCondition extends AbstractProcessingCondition {
 
 	@Override
 	public boolean processOnResource(Resource res) throws RepositoryException {
-		// TODO Auto-generated method stub
 		
 		if(isPage(res)) {
 			Page page = convertToPage(res);
@@ -46,18 +46,20 @@ public class DeactivatedPageCondition extends AbstractProcessingCondition {
 	}
 	
 	private boolean isPage(Resource res) {
-		// TODO Check if node is a page
-		return false;
+		Page p = res.adaptTo(Page.class);
+		if(p == null) {
+			return false;
+		}
+		return true;
 	}
 	
 	private boolean isActivated(Page p) {
-		// TODO check if page is activated
-		return false;
+		ReplicationStatus status = p.adaptTo(ReplicationStatus.class);
+		return status.isActivated();
 	}
 	
 	private Page convertToPage(Resource res) {
-		// TODO returns Page version of node
-		return null;
+		return res.adaptTo(Page.class);
 	}
 
 }

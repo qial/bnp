@@ -6,12 +6,16 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
 import org.apache.sling.api.resource.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.headwire.bnp.ProcessingActivity;
 import com.headwire.bnp.ProcessingCondition;
 import com.headwire.bnp.config.BnpConstants;
 
 public abstract class AbstractProcessingActivity implements ProcessingActivity {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(AbstractProcessingActivity.class);
 
 	protected static final boolean DEBUG = BnpConstants.DEBUG;
 	
@@ -30,7 +34,7 @@ public abstract class AbstractProcessingActivity implements ProcessingActivity {
 			return true;
 		}
 		for(ProcessingCondition condition : conditions) {
-			boolean status = condition.processOnNode(node);
+			boolean status = condition.processOnResource(res);
 			if(status) {
 				// we're good for this one!
 				continue;
@@ -49,5 +53,13 @@ public abstract class AbstractProcessingActivity implements ProcessingActivity {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	protected Node getNode(Resource res) {
+		Node n = res.adaptTo(Node.class);
+		if(n == null) {
+			LOG.warn("Could not get Node from Resource "+res.getPath());
+		}
+		return n;
 	}
 }
