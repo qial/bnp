@@ -32,7 +32,7 @@ public class NodeRunner {
 	public void run(ResourceResolver resolver) throws RepositoryException {
 		LOG.info("Beginning NodeRunner run");
 		for(String startPath : startPaths) {
-			LOG.info("Noderunner: Start path is "+startPath);
+			LOG.info("Starting run on startPath "+startPath);
 			
 			Resource res = resolver.getResource(startPath);
 			if(res == null) {
@@ -41,7 +41,11 @@ public class NodeRunner {
 			}
 			
 			runRecursively(res);
+			
+
+			LOG.info("Finished run on startPath "+startPath);
 		}
+		LOG.info("Finished NodeRunner run!");
 	}
 	
 	protected void runRecursively(Resource root) throws RepositoryException {
@@ -68,14 +72,16 @@ public class NodeRunner {
 	}
 	
 	protected boolean runOnResource(Resource res) throws RepositoryException {
-		LOG.info("NodeRunner: running on "+res.getPath());
+		//LOG.info("NodeRunner: running on "+res.getPath());
 		
 		// TODO session control stuff will likely go here
 		
 		// run through activities
 		for(ProcessingActivity activity : activities) {
 			if(activity.checkConditions(res)) {
+				LOG.info("Conditions passed for "+activity.getName()+" on resource "+res.getPath());
 				// conditions returned true, run activity
+				
 				int acts = activity.performAction(res);
 				// TODO session control with acts stuff
 				if(acts == -1) {
@@ -84,7 +90,7 @@ public class NodeRunner {
 				}
 			}
 			else {
-				LOG.info("NodeRunner: conditions failed for "+activity.getName()+" on resource "+res.getPath());
+				LOG.info("Conditions failed for "+activity.getName()+" on resource "+res.getPath());
 			}
 		}
 		return true;
