@@ -4,6 +4,7 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +25,9 @@ public class NodeTypeCondition extends AbstractProcessingCondition {
 	@Override
 	public boolean processOnResource(Resource res) throws RepositoryException {
 		// TODO this, change for resource
-		String givenType = "";//res.g.getName();
+		//String givenType = "";//res.g.getName();
+		ValueMap vm = res.adaptTo(ValueMap.class);
+		String givenType = vm.get("jcr:primaryType",String.class);
 		if(DEBUG) {
 			LOG.info("Node type of "+res.getPath()+" was "+givenType);
 		}
