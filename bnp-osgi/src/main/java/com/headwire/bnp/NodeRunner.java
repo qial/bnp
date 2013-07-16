@@ -149,6 +149,7 @@ public class NodeRunner {
 	private void initProcessingActivity(ProcessingActivity activity, ActivityConfig config) {
 		// initialize variables
 		activity.setName(config.getName());
+		
 	}
 	
 	private void initProcessingCondition(ProcessingCondition condition, ConditionConfig config) {

@@ -1,6 +1,8 @@
 package com.headwire.bnp.activity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
@@ -22,6 +24,8 @@ public abstract class AbstractProcessingActivity implements ProcessingActivity {
 	private List<ProcessingCondition> conditions = null; 
 	
 	private String name;
+	
+	private Map<String,String> configMap = null;
 	
 	public void setConditions(List<ProcessingCondition> conditions) {
 		this.conditions = conditions;
@@ -61,5 +65,17 @@ public abstract class AbstractProcessingActivity implements ProcessingActivity {
 			LOG.warn("Could not get Node from Resource "+res.getPath());
 		}
 		return n;
+	}
+
+	public Map<String,String> getConfigMap() {
+		// don't return a null map
+		if(configMap == null) {
+			return new HashMap<String,String>();
+		}
+		return configMap;
+	}
+
+	public void setConfigMap(Map<String,String> configMap) {
+		this.configMap = configMap;
 	}
 }
