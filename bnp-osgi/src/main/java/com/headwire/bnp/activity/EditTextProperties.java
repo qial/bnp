@@ -2,11 +2,14 @@ package com.headwire.bnp.activity;
 
 
 
+import java.util.Map;
+
 import javax.jcr.Node;
 import javax.jcr.Property;
 import javax.jcr.PropertyIterator;
 import javax.jcr.PropertyType;
 import javax.jcr.RepositoryException;
+import javax.jcr.ValueFormatException;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -25,24 +28,50 @@ public class EditTextProperties extends AbstractProcessingActivity {
 		ValueMap vm = res.adaptTo(ValueMap.class);
 		Node node = res.adaptTo(Node.class);
 		
+		int propsModified = 0;
+		
 		PropertyIterator pIter = node.getProperties();
 		while(pIter.hasNext()) {
 			Property prop = pIter.nextProperty();
 			
 			if(isModifiable(prop)) {
-				doModifications(prop);
+				boolean modified = doModifications(prop);
+				if(modified) {
+					// increase our modification count
+					propsModified ++;
+				}
 			}
 			else {
 				// move on to next property
 			}
 		}
 		
-		return 0;
+		return propsModified;
 	}
 
-	private void doModifications(Property prop) {
-		// TODO Auto-generated method stub
+	private boolean doModifications(Property prop) throws RepositoryException {
+		// get the value and save it
+		String propValue = prop.getString();
+		String originalValue = propValue;
 		
+		// run through the regex changes
+		for(Map.Entry<String, String> entry : getConfigMap().entrySet()) {
+			String regex = entry.getKey();
+			String replacement = entry.getValue();
+			propValue = propValue.replaceAll(regex, replacement);
+		}
+		
+		if(propValue.equals(originalValue)) {
+			// no change
+			return false;
+		}
+		
+		// print out final value
+		LOG.info("Modified value for Property "+prop.getPath()+"\nOriginal:\n"+originalValue+"\nNew:\n"+propValue);
+		
+		prop.setValue(propValue);
+		// NOTE: saving will be done elsewhere
+		return true;
 	}
 
 	private boolean isModifiable(Property prop) throws RepositoryException {
