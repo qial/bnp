@@ -1,12 +1,14 @@
 package com.headwire.bnp.config;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class ActivityConfig {
 
 	private String name;
 	private String className;
 	private boolean enabled = true;
+	private HashMap<String,String> config = new HashMap<String,String>();
 	
 	private ConditionConfig[] conditions;
 	
@@ -17,6 +19,8 @@ public class ActivityConfig {
 		sb.append(" name = ").append(name);
 		sb.append(", ");
 		sb.append(" className = ").append(className);
+		sb.append(", ");
+		sb.append(" config = ").append(config);
 		sb.append(", ");
 		sb.append(" conditions = ");
 		sb.append((conditions == null) ? "null" : Arrays.asList(conditions).toString());
@@ -58,5 +62,13 @@ public class ActivityConfig {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public HashMap<String,String> getConfig() {
+		return config;
+	}
+
+	public void setConfig(HashMap<String,String> config) {
+		this.config = config;
 	}
 }

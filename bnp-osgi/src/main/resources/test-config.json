@@ -9,6 +9,9 @@
 		"conditions": [{
 			"className": "com.headwire.bnp.condition.AlwaysFalseCondition"
 		}],
+		"config": {
+			"test" : "something"
+		},
 		"enabled": false
 	},{
 		"name": "Test Activity 2",
@@ -22,7 +25,7 @@
 		}],
 		"enabled": false
 	},{
-		"name": "Test Deactivated Page activity"
+		"name": "Test Deactivated Page activity",
 		"className": "com.headwire.bnp.activity.EditProperties",
 		"conditions": [{
 			"className": "com.headwire.bnp.condition.DeactivatedPageCondition"
