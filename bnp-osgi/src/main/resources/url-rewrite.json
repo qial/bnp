@@ -1,0 +1,39 @@
+{
+	"name": "DCP Content URL Rewrite Configuration",
+	"startPaths": [
+		"/content/lifetech/global/en/home/products-services/services"
+	],
+	"activities": [{
+		"name": "Rewrite Content",
+		"className": "com.headwire.bnp.activity.EditTextProperties",
+		"conditions": [{
+			"className": "com.headwire.bnp.condition.AlwaysTrueCondition"
+		}],
+		"config": {
+			"www.invitrogen.com/site/us/en/home/support" : "www.lifetechnologies.com/us/en/home/support"
+		},
+		"enabled": true
+	},{
+		"name": "Test Activity 2",
+		"className": "com.headwire.bnp.activity.DeleteNode",
+		"conditions": [{
+			"className": "com.headwire.bnp.condition.NodeNameCondition",
+			"configString": "services"
+		},{
+			"className": "com.headwire.bnp.condition.NodeTypeCondition",
+			"configString": "cq:Page"
+		}],
+		"enabled": false
+	},{
+		"name": "Test Deactivated Page activity",
+		"className": "com.headwire.bnp.activity.EditProperties",
+		"conditions": [{
+			"className": "com.headwire.bnp.condition.DeactivatedPageCondition"
+		}],
+		"enabled": false
+	}]
+}
+
+
+//www.invitrogen.com/site/us/en/home/support*
+//www.lifetechnologies.com/us/en/home/support*
