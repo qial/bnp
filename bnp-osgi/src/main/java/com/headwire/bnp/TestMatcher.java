@@ -47,7 +47,7 @@ public class TestMatcher {
 		replacement.append("/content/lifetech/");
 		replacement.append(matcher.group(1));
 		replacement.append(matcher.group(2));
-		replacement.append("/home/support");
+		//replacement.append("/home/support");
 		replacement.append(matcher.group(3).toLowerCase().replaceAll("_", "-"));
 		
 		// append the replacement
@@ -56,21 +56,22 @@ public class TestMatcher {
 		matcher.appendTail(s);
 		
 		test1R = s.toString();
+		
 		out(test1);
 		out(test1R);
 		out();
 		
-		out(test2);
-		out(test2.replaceAll(regx1, repl1));
-		out();
+//		out(test2);
+//		out(test2.replaceAll(regx1, repl1));
+//		out();
 		
-		out(test3);
-		out(test3.replaceAll(regx1, repl1));
-		out();
+//		out(test3);
+//		out(test3.replaceAll(regx1, repl1));
+//		out();
 		
-		out(test4);
-		out(test4.replaceAll(regx1, repl1));
-		out();
+//		out(test4);
+//		out(test4.replaceAll(regx1, repl1));
+//		out();
 	}
 	
 	private static void matcherInvitrogen1() {
